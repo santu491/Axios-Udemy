@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
 import Posts from './Posts/Posts';
-// import FullPost from './FullPost/FullPost';
-// import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 import './Blog.css';
 // import axios from 'axios'
 import axios from '../../axios'
-import { Route, NavLink } from 'react-router-dom'
+import { Route, NavLink, Switch } from 'react-router-dom'
 import NewPost from './NewPost/NewPost';
 class Blog extends Component {
     // constructor(props) {
@@ -50,17 +49,17 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><NavLink to="/"
-                               
+                            <li><NavLink to="/posts"
+
                                 exact
                                 activeClassName="my-active"
                                 activeStyle={{
-                                    color:"#fa923f",
-                                    textDecoration:"underline"
+                                    color: "#fa923f",
+                                    textDecoration: "underline"
 
                                 }}
-                                >
-                                Home</NavLink></li>
+                            >
+                                posts</NavLink></li>
                             <li><NavLink to={{
                                 pathname: "/New-Post",
                                 hash: '#submit',
@@ -84,9 +83,11 @@ class Blog extends Component {
 
 
                 {/* <Route path='/' exact render={()=><h1>hii</h1>}/> */}
-
-                <Route path='/' exact component={Posts} />
-                <Route exact path="/New-Post" component={NewPost} />
+                <Switch>
+                    <Route path='/posts' exact component={Posts} />
+                    <Route exact path="/New-Post" component={NewPost} />
+                    <Route path="/posts/:id" exact component={FullPost} />
+                </Switch>
 
             </div>
         );
